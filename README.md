@@ -16,6 +16,13 @@ O **iCEV-PLACAS** foi construído com as seguintes tecnologias:
 
 ---
 
+## ⚠️ Pendências Atuais
+
+- 📁 **Implementar a funcionalidade do botão "Anexar CSV"** para permitir o carregamento de múltiplos alunos via planilha.
+- 📱 **Tornar o site responsivo** para que funcione adequadamente em dispositivos móveis e diferentes resoluções de tela.
+
+---
+
 ## 🚀 Como Usar (Em Desenvolvimento)
 
 ### Pré-requisitos:
@@ -28,3 +35,4 @@ Certifique-se de ter o **Docker** e o **Docker Compose** instalados em sua máqu
    git clone [LINK_DO_SEU_REPOSITORIO]
 2. Acesse:
    ```[http://localhost:5000]```
+
