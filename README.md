@@ -35,4 +35,7 @@ Certifique-se de ter o **Docker** e o **Docker Compose** instalados em sua máqu
    git clone [LINK_DO_SEU_REPOSITORIO]
 2. Acesse:
    ```[http://localhost:5000]```
+3. Rode com:
+    ```bash
+   python main.py
 
