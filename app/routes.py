@@ -1,8 +1,9 @@
 
 # -*- coding: utf-8 -*-
 
-from main import app 
-from flask import render_template, request
+from flask import Blueprint, render_template
+
+main = Blueprint('main', __name__)
 
 
 CURSOS_VALIDOS = [
@@ -23,13 +24,11 @@ CURSOS_VALIDOS = [
     'pos-inovacoes-tecnologicas-educacao', 'pos-inteligencia-artificial', 'pos-licitacoes-contratos'
     ]
 
-@app.route('/')
+@main.route('/')
 def data(): 
     return render_template('index.html')
 
-@app.route('/emitir', methods=['POST'])
+@main.route('/emitir', methods=['POST'])
 def emitir():
         return render_template('index.html')
     
-if __name__ == '__main__':
-    app.run(debug=True)
