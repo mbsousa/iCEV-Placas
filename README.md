@@ -1,7 +1,7 @@
 # Projeto: iCEV-PLACAS 📃
 ---
 
-<img width="1919" height="918" alt="Image" src="https://github.com/user-attachments/assets/8cfe092c-19c8-4d49-896a-8433db4a33db" />
+<img width="1287" height="826" alt="Image" src="https://github.com/user-attachments/assets/af92b8d0-f336-4b07-bf15-b4e5d7dbc167" />
 
 ## 🛠 Tecnologias Utilizadas
 
