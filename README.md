@@ -16,13 +16,6 @@ O **iCEV-PLACAS** foi construído com as seguintes tecnologias:
 
 ---
 
-## ⚠️ Pendências Atuais
-
-- 📁 **Implementar a funcionalidade do botão "Anexar CSV"** para permitir o carregamento de múltiplos alunos via planilha.
-- 📱 **Tornar o site responsivo** para que funcione adequadamente em dispositivos móveis e diferentes resoluções de tela.
-
----
-
 ## 🚀 Como Usar (Em Desenvolvimento)
 
 ### Pré-requisitos:
