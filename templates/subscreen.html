@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscreen</title>
+</head>
+<body>
+    <!-- subscreen.html -->
+    <div id="csv-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Instruções para Anexar o CSV</h2>
+        <p>
+              O arquivo CSV deve conter, obrigatoriamente, na <strong>primeira linha</strong>, os seguintes campos, separados por ponto e vírgula <code>(;)</code>:<br>
+                <code><strong>nome;curso;periodo</strong></code>
+        </p>
+        <div class="rest-content">
+            <ul>
+            <li><strong>Nome</strong> do aluno</li>
+            <li><strong>Curso</strong> (nome completo)</li>
+            <li><strong>Período</strong> (número entre 1 e 10)</li>
+            </ul>
+        </div>
+            <p>Exemplo de conteúdo do arquivo:</p>
+            <pre>
+                nome;curso;periodo
+                João Silva;Direito;3
+                Maria Souza;Engenharia da Computação;5
+            </pre>
+            <p>Após entender, clique fora ou no "X" para continuar.</p>
+        
+    </div>
+    </div>
+
+</body>
+</html>

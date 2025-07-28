@@ -30,23 +30,6 @@ def data():
 @app.route('/emitir', methods=['POST'])
 def emitir():
         return render_template('index.html')
-
-""" @app.route('/emitir_csv')
-def emitir_por_csv():
-    df = pd.read_csv('aluno.csv', dtype=str)
-    print(df)
-    for _, row in df.iterrows():
-        nome = str(row['nome'])
-        curso = str(row['curso'])
-        if curso == 'cpt':
-            curso = 'Computação'
-        elif curso == 'dt':
-            curso = 'Direito'
-        elif curso == 'adm':
-            curso = 'Administração'
-        periodo = f"{row['periodo']}º Período"
-        gerar_placa(nome,curso,periodo)
-    return 'Arquivo gerado com sucesso!' """
     
 if __name__ == '__main__':
     app.run(debug=True)

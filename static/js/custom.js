@@ -77,6 +77,10 @@ function atualizar() {
   const periodo1 = document.getElementById('periodo1')?.value.trim();
   const periodo2 = document.getElementById('periodo2')?.value.trim();
 
+  function cursoSemPeriodo(cursoKey){
+    return cursoKey?.toLowerCase().startsWith('mba') || cursoKey?.toLowerCase().startsWith('pos');
+  }
+
   document.querySelectorAll('.preview-nome1').forEach(el => {
       el.textContent = nome1 || 'Nome do Aluno';
   });
@@ -90,8 +94,14 @@ function atualizar() {
       }
   });
 
+  /* adicionado lógica de que caso o curso comece com mba ou pós, período é opcional */
   document.querySelectorAll('.preview-periodo1').forEach(el => {
-    el.textContent = periodo1 ? periodo1 + 'º Período' : 'Período';
+    if (cursoSemPeriodo(curso1)) {
+        el.style.display = 'none';
+    } else {
+      el.style.display = 'block';
+      el.textContent = periodo1 ? periodo1 + 'º Período' : 'Período';
+    }
   });
 
   document.querySelectorAll('.preview-nome2').forEach(el => {
@@ -107,12 +117,106 @@ function atualizar() {
     }
   });
 
+  /* adicionado lógica de que caso o curso comece com mba ou pós, período é opcional */
     document.querySelectorAll('.preview-periodo2').forEach(el => {
+      if (cursoSemPeriodo(curso2)) {
+        el.style.display = 'none';
+    } else {
+      el.style.display = 'block';
       el.textContent = periodo2 ? periodo2 + 'º Período' : 'Período';
+    }
   });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  /* subscreen.html */
+  const modal = document.getElementById('csv-modal');
+  const closeBtn = document.querySelector('.close-btn');
+  const csvBtn = document.getElementById('csv-btn');
+  const csvInput = document.getElementById('csv-upload');
+  const previewArea = document.querySelector('.preview-area');
+  const fileNameDisplay = document.getElementById('file-name');
+
+  if (!csvBtn || !csvInput || !fileNameDisplay || !previewArea) {
+    console.error('Elemento(s) não encontrado(s) no DOM.');
+    return;
+  }
+
+  csvBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+
+csvInput.addEventListener('change', function (event) {
+  const file = event.target.files[0];
+
+  if (file && file.name.endsWith('.csv')) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const lines = e.target.result.trim().split('\n');
+      const alunos = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const [nome, curso, periodo] = lines[i].split(';');
+        alunos.push({ 
+          nome: nome?.trim(),
+          curso: curso?.trim(), 
+          periodo: periodo?.trim() 
+        });
+      }
+
+      previewArea.innerHTML = '';
+
+      for (let i = 0; i < alunos.length; i++) {
+      const aluno = alunos[i];
+
+      const layout = document.createElement('div');
+      layout.className = 'layout';
+
+      layout.innerHTML = `
+        <div class="nome preview-nome1">${aluno.nome}</div>
+        <div class="curso preview-curso1">${aluno.curso}</div>
+        <div class="periodo preview-periodo1">${aluno.periodo}º Período</div>
+      `;
+
+      previewArea.appendChild(layout);
+          }
+
+      fileNameDisplay.textContent = `Arquivo selecionado: ${file.name}`;
+    };
+
+    reader.readAsText(file, 'ISO-8859-1');
+
+  } else {
+    fileNameDisplay.textContent = 'Por favor, selecione um arquivo .csv válido.';
+    event.target.value = '';
+  }
+});
+
+
+  const all = document.querySelectorAll(
+    '#nome1, #nome2, #search-curso1, #search-curso2, #periodo1, #periodo2, #curso1-hidden, #curso2-hidden'
+  );
+
+  all.forEach(input => {
+    input.addEventListener('input', atualizar);
+  });
+  atualizar();
+
+  closeBtn.addEventListener('click', function () {
+    modal.style.display = 'none';
+    document.getElementById('csv-upload').click();
+  });
+
+  window.addEventListener('click', function (event){
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      document.getElementById('csv-upload').click();
+    }
+  });
+
   const searchInput = document.getElementById('search-curso1');
   const searchInput2 = document.getElementById('search-curso2');
 
@@ -186,19 +290,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (noResults2) noResults2.style.display = 'none';
       atualizar();
     });
-  })
-
-  const all = document.querySelectorAll(
-    '#nome1, #nome2, #search-curso1, #search-curso2, #periodo1, #periodo2, #curso1-hidden, #curso2-hidden'
-  );
-
-  all.forEach(input => {
-    input.addEventListener('input', atualizar);
-  });
-
-  atualizar();
-
 });
+});
+
+
 
 /* mode dark */
   const body = document.body;
@@ -261,7 +356,6 @@ document.querySelectorAll('.custom-select').forEach((parent) => {
       parent.classList.remove('open');
     }
   });
-
 });
 
 
@@ -278,21 +372,22 @@ document.getElementById('emitir-btn').addEventListener('click', function (event)
   const periodo1 = document.getElementById('periodo1').value.trim();
   const periodo2 = document.getElementById('periodo2').value.trim();
 
-  const conjunto1Preenchido = nome1 && curso1 && periodo1;
-  const conjunto2Preenchido = nome2 && curso2 && periodo2; 
+  function cursoSemPeriodo(cursoKey){
+    return cursoKey.startsWith('mba') || cursoKey.startsWith('pos');
+  }
+
+  const conjunto1Preenchido =
+  nome1 && curso1 && (cursoSemPeriodo(curso1) || periodo1);
+
+  const conjunto2Preenchido =
+    nome2 && curso2 && (cursoSemPeriodo(curso2) || periodo2);
+
 
   if (!conjunto1Preenchido && !conjunto2Preenchido) {
     alert("Formulário incompleto. Por favor, preencha todos os campos.");
     return;
   }
   window.print();
-  
-  const layout = document.querySelectorAll('.layout')
-
-/*   setTimeout(() => {
-      layout.style.display = 'block';
-  }, 500); */
-
   
 });
 

@@ -8,7 +8,6 @@
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png') }}" />
-    <link rel="manifest" href="/site.webmanifest" />
     <!-- Font Awesome -->
     <link 
     rel="stylesheet" 
@@ -51,7 +50,7 @@
                 <h3>1º Aluno</h3>   
                 
                 <!-- Nome -->
-                <label for="username">Nome:</label>
+                <label for="nome1">Nome:</label>
                 <div class="input">
                     <i class="fa-solid fa-user"></i>
                     <input id="nome1" name="nome1" placeholder="Nome do aluno" type="text">
@@ -134,7 +133,7 @@
 
                                 </ul>
 
-                                <p id="no_results" style="display: none; color: red;">Nenhum curso encontrado.</p>
+                                <p id="no_results" style="display: none; color: rgba(255, 0, 0, 0.5);">Nenhum curso encontrado.</p>
                                 <input type="hidden" name="curso1" id="curso1-hidden">
                         </div>
                     </div>  
@@ -233,7 +232,7 @@
      
                                 </ul>
 
-                                <p id="no_results2" style="display: none; color: red;">Nenhum curso encontrado.</p>
+                                <p id="no_results2" style="display: none; color:  rgba(255, 0, 0, 0.5);">Nenhum curso encontrado.</p>
                                 <input type="hidden" name="curso2" id="curso2-hidden">
                         </div>
                         
@@ -250,10 +249,17 @@
                 <div id="btn">
                     <button type="button" id="emitir-btn">Emitir</button>
                 </div>
+
                 <!-- Anexar CSV -->
-                <div id="btn-2">
-                    <button type="button" id="csv-btn">Anexar CSV</button>
-                </div>
+
+                <input type="file" id="csv-upload" accept=".csv" style="display: none;">
+                    
+                    <div id="btn-2">
+                        <button type="button" id="csv-btn">Anexar CSV</button>
+                    </div>
+
+                <p id="file-name" class="file-name"></p>
+
             </form>
 
             <div class="bottom-content">
@@ -294,6 +300,9 @@
         </div>
     </div>
     
+    <!-- subscreen.html -->
+    {% include 'subscreen.html' %}
+
 
 </body>
 </html>
