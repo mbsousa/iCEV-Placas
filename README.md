@@ -1,6 +1,8 @@
 # Projeto: iCEV-PLACAS 📃
 ---
 
+<img width="1287" height="826" alt="Image" src="https://github.com/user-attachments/assets/af92b8d0-f336-4b07-bf15-b4e5d7dbc167" />
+
 ## 🛠 Tecnologias Utilizadas
 
 O **iCEV-PLACAS** foi construído com as seguintes tecnologias:
@@ -13,13 +15,6 @@ O **iCEV-PLACAS** foi construído com as seguintes tecnologias:
 ### Backend:
 - **Python**: Linguagem de programação principal para o servidor.
 - **Flask**: Micro-framework web Python para gerenciar as rotas e a lógica do servidor.
-
----
-
-## ⚠️ Pendências Atuais
-
-- 📁 **Implementar a funcionalidade do botão "Anexar CSV"** para permitir o carregamento de múltiplos alunos via planilha.
-- 📱 **Tornar o site responsivo** para que funcione adequadamente em dispositivos móveis e diferentes resoluções de tela.
 
 ---
 
