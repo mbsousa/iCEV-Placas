@@ -1,6 +1,8 @@
 # Projeto: iCEV-PLACAS 📃
 ---
 
+<img width="1919" height="918" alt="Image" src="https://github.com/user-attachments/assets/8cfe092c-19c8-4d49-896a-8433db4a33db" />
+
 ## 🛠 Tecnologias Utilizadas
 
 O **iCEV-PLACAS** foi construído com as seguintes tecnologias:
