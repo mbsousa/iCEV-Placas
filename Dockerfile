@@ -1,8 +1,17 @@
 FROM python:3.10
 
 WORKDIR /app
+
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+
+ENV FLASK_APP = main.py
+ENV FLASK_RUN_HOST = 0.0.0.0
+ENV FLASK_ENV = development
+
+EXPOSE 5000
+
+CMD ["flask", "run"]
