@@ -8,16 +8,16 @@ lucide.createIcons();
 /* normalize 'nfd' = retira os caracteres especiais e retorna puro, exemplo: ola mundo */
 /* replace = remove os acentos, só pra garantir */
 
-function formatString(value){
-  
-    return value
-      .trim()
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-  }
+function formatString(value) {
 
-/* const de todos os cursos de graduação e pós-graduação juntamente com MBA */
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+/* const de todos os cursos de graduação e pós-graduação juntamente com mba */
 const cursosMap = {
   dt: 'Direito',
   cpt: 'Engenharia da Computação',
@@ -63,41 +63,41 @@ const cursosMap = {
   'pos-inovacoes-tecnologicas-educacao': 'Pós-Graduação em Inovações Tecnológicas para Educação',
   'pos-inteligencia-artificial': 'Pós-graduação em Inteligência Artificial',
   'pos-licitacoes-contratos': 'Pós-graduação em Licitações e Contratos'
-  };  
+};
 
 
-/* function responsável por atualizar os dados a medida que vão sendo preenchidos no form, resultando no preview-area */ 
+/* function responsável por atualizar os dados a medida que vão sendo preenchidos no form, resultando no preview-area */
 function atualizar() {
   const nome1 = document.getElementById('nome1')?.value.trim();
   const nome2 = document.getElementById('nome2')?.value.trim();
-  
+
   const curso1 = document.getElementById('curso1-hidden')?.value.trim();
-  const curso2 = document.getElementById('curso2-hidden')?.value.trim(); 
+  const curso2 = document.getElementById('curso2-hidden')?.value.trim();
 
   const periodo1 = document.getElementById('periodo1')?.value.trim();
   const periodo2 = document.getElementById('periodo2')?.value.trim();
 
-  function cursoSemPeriodo(cursoKey){
+  function cursoSemPeriodo(cursoKey) {
     return cursoKey?.toLowerCase().startsWith('mba') || cursoKey?.toLowerCase().startsWith('pos');
   }
 
   document.querySelectorAll('.preview-nome1').forEach(el => {
-      el.textContent = nome1 || 'Nome do Aluno';
+    el.textContent = nome1 || 'Nome do Aluno';
   });
 
   document.querySelectorAll('.preview-curso1').forEach(el => {
-      const keyCurso1 = document.getElementById('curso1-hidden').value;
-      if (keyCurso1) {
-        el.textContent = cursosMap[keyCurso1] || 'Curso';
-      } else {
-        el.textContent = curso1 || 'Curso';
-      }
+    const keyCurso1 = document.getElementById('curso1-hidden').value;
+    if (keyCurso1) {
+      el.textContent = cursosMap[keyCurso1] || 'Curso';
+    } else {
+      el.textContent = curso1 || 'Curso';
+    }
   });
 
   /* adicionado lógica de que caso o curso comece com mba ou pós, período é opcional */
   document.querySelectorAll('.preview-periodo1').forEach(el => {
     if (cursoSemPeriodo(curso1)) {
-        el.style.display = 'none';
+      el.style.display = 'none';
     } else {
       el.style.display = 'block';
       el.textContent = periodo1 ? periodo1 + 'º Período' : 'Período';
@@ -118,9 +118,9 @@ function atualizar() {
   });
 
   /* adicionado lógica de que caso o curso comece com mba ou pós, período é opcional */
-    document.querySelectorAll('.preview-periodo2').forEach(el => {
-      if (cursoSemPeriodo(curso2)) {
-        el.style.display = 'none';
+  document.querySelectorAll('.preview-periodo2').forEach(el => {
+    if (cursoSemPeriodo(curso2)) {
+      el.style.display = 'none';
     } else {
       el.style.display = 'block';
       el.textContent = periodo2 ? periodo2 + 'º Período' : 'Período';
@@ -148,52 +148,52 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-csvInput.addEventListener('change', function (event) {
-  const file = event.target.files[0];
+  csvInput.addEventListener('change', function (event) {
+    const file = event.target.files[0];
 
-  if (file && file.name.endsWith('.csv')) {
-    const reader = new FileReader();
+    if (file && file.name.endsWith('.csv')) {
+      const reader = new FileReader();
 
-    reader.onload = function (e) {
-      const lines = e.target.result.trim().split('\n');
-      const alunos = [];
+      reader.onload = function (e) {
+        const lines = e.target.result.trim().split('\n');
+        const alunos = [];
 
-      for (let i = 1; i < lines.length; i++) {
-        const [nome, curso, periodo] = lines[i].split(';');
-        alunos.push({ 
-          nome: nome?.trim(),
-          curso: curso?.trim(), 
-          periodo: periodo?.trim() 
-        });
-      }
+        for (let i = 1; i < lines.length; i++) {
+          const [nome, curso, periodo] = lines[i].split(';');
+          alunos.push({
+            nome: nome?.trim(),
+            curso: curso?.trim(),
+            periodo: periodo?.trim()
+          });
+        }
 
-      previewArea.innerHTML = '';
+        previewArea.innerHTML = '';
 
-      for (let i = 0; i < alunos.length; i++) {
-      const aluno = alunos[i];
+        for (let i = 0; i < alunos.length; i++) {
+          const aluno = alunos[i];
 
-      const layout = document.createElement('div');
-      layout.className = 'layout';
+          const layout = document.createElement('div');
+          layout.className = 'layout';
 
-      layout.innerHTML = `
+          layout.innerHTML = `
         <div class="nome preview-nome1">${aluno.nome}</div>
         <div class="curso preview-curso1">${aluno.curso}</div>
         <div class="periodo preview-periodo1">${aluno.periodo}º Período</div>
       `;
 
-      previewArea.appendChild(layout);
-          }
+          previewArea.appendChild(layout);
+        }
 
-      fileNameDisplay.textContent = `Arquivo selecionado: ${file.name}`;
-    };
+        fileNameDisplay.textContent = `Arquivo selecionado: ${file.name}`;
+      };
 
-    reader.readAsText(file, 'ISO-8859-1');
+      reader.readAsText(file, 'ISO-8859-1');
 
-  } else {
-    fileNameDisplay.textContent = 'Por favor, selecione um arquivo .csv válido.';
-    event.target.value = '';
-  }
-});
+    } else {
+      fileNameDisplay.textContent = 'Por favor, selecione um arquivo .csv válido.';
+      event.target.value = '';
+    }
+  });
 
 
   const all = document.querySelectorAll(
@@ -210,7 +210,7 @@ csvInput.addEventListener('change', function (event) {
     document.getElementById('csv-upload').click();
   });
 
-  window.addEventListener('click', function (event){
+  window.addEventListener('click', function (event) {
     if (event.target === modal) {
       modal.style.display = 'none';
       document.getElementById('csv-upload').click();
@@ -221,11 +221,11 @@ csvInput.addEventListener('change', function (event) {
   const searchInput2 = document.getElementById('search-curso2');
 
 
-  const items             = document.querySelectorAll('.options-1 .option');
-  const items2            = document.querySelectorAll('.options-2 .option');
-  const noResults         = document.getElementById('no_results');
-  const noResults2        = document.getElementById('no_results2');  
-  const optionsContainer  = document.querySelector('.options-1');
+  const items = document.querySelectorAll('.options-1 .option');
+  const items2 = document.querySelectorAll('.options-2 .option');
+  const noResults = document.getElementById('no_results');
+  const noResults2 = document.getElementById('no_results2');
+  const optionsContainer = document.querySelector('.options-1');
   const optionsContainer2 = document.querySelector('.options-2');
 
   searchInput.addEventListener('input', function (event) {
@@ -260,59 +260,59 @@ csvInput.addEventListener('change', function (event) {
   });
 
   searchInput2.addEventListener('input', function (event) {
-  const value2 = formatString(event.target.value);
-  let hasResult = false;
+    const value2 = formatString(event.target.value);
+    let hasResult = false;
 
-  optionsContainer2.style.display = value2 !== '' ? 'block' : 'none';
+    optionsContainer2.style.display = value2 !== '' ? 'block' : 'none';
 
-  items2.forEach(item => {
-    const text = item.textContent;
-    if (formatString(text).includes(value2)){
-      item.style.display = 'block';
-      hasResult = true;
-    } else {
-      item.style.display = 'none';
-    }
-  });
+    items2.forEach(item => {
+      const text = item.textContent;
+      if (formatString(text).includes(value2)) {
+        item.style.display = 'block';
+        hasResult = true;
+      } else {
+        item.style.display = 'none';
+      }
+    });
 
-  if (noResults2) noResults2.style.display = hasResult ? 'none' : 'block';
+    if (noResults2) noResults2.style.display = hasResult ? 'none' : 'block';
   });
 
   items2.forEach(item => {
     item.addEventListener('click', () => {
-      const selectedText = item.textContent; 
-      const selectedValue = item.dataset.value || selectedText; 
+      const selectedText = item.textContent;
+      const selectedValue = item.dataset.value || selectedText;
 
-      searchInput2.value = selectedText; 
+      searchInput2.value = selectedText;
       document.getElementById('curso2-hidden').value = selectedValue;
 
-      optionsContainer2.style.display = 'none'; 
+      optionsContainer2.style.display = 'none';
       if (noResults2) noResults2.style.display = 'none';
       atualizar();
     });
-});
+  });
 });
 
 
 
 /* mode dark */
-  const body = document.body;
-  const modeSwitch = body.querySelector(".toggle-switch");
-  const modetext = body.querySelector(".mode-text");
-  const toggle = body.querySelector(".toggle");
-  const sidebar = body.querySelector(".sidebar");
-
-  toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-  });
-
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    modetext.innerText = body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
-  });
+const body = document.body;
+const modeSwitch = body.querySelector(".toggle-switch");
+const modetext = body.querySelector(".mode-text");
 
 
-/* Análise daqui pra baixo */
+/* O código que controlava o toggle abrir/fechar do sidebar antigo eu comentei
+/* (const toggle = body.querySelector(".toggle");) */
+/* (const sidebar = body.querySelector(".sidebar");) */
+/* (toggle.addEventListener("click", () => { ... });) */
+/* Ele não é mais necessário, pois o form-panel está sempre visível no novo layout. */
+
+
+modeSwitch.addEventListener("click", () => {
+  body.classList.toggle("dark");
+  modetext.innerText = body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+});
+
 
 document.querySelectorAll('.custom-select').forEach((parent) => {
   const selectedValue = parent.querySelector('input.input-field');
@@ -372,12 +372,12 @@ document.getElementById('emitir-btn').addEventListener('click', function (event)
   const periodo1 = document.getElementById('periodo1').value.trim();
   const periodo2 = document.getElementById('periodo2').value.trim();
 
-  function cursoSemPeriodo(cursoKey){
+  function cursoSemPeriodo(cursoKey) {
     return cursoKey.startsWith('mba') || cursoKey.startsWith('pos');
   }
 
   const conjunto1Preenchido =
-  nome1 && curso1 && (cursoSemPeriodo(curso1) || periodo1);
+    nome1 && curso1 && (cursoSemPeriodo(curso1) || periodo1);
 
   const conjunto2Preenchido =
     nome2 && curso2 && (cursoSemPeriodo(curso2) || periodo2);
@@ -388,6 +388,5 @@ document.getElementById('emitir-btn').addEventListener('click', function (event)
     return;
   }
   window.print();
-  
-});
 
+});
