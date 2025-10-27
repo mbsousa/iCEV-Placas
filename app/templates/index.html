@@ -1,312 +1,332 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon-96x96.png') }}" sizes="96x96" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon-96x96.png') }}"
+        sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png') }}" />
-    <!-- Font Awesome -->
-    <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    
-    <!-- Link css via flask -->
-    <link rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Phosphor icons -->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 
     <title>Icev Plaquinhas</title>
 </head>
+
 <body>
-    <!-- Nome;Curso;Período -->
 
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
+    <div class="app-container">
+
+        <div class="form-panel">
+
+            <header>
+                <div class="image-text">
+                    <span class="image">
                         <img src="static/images/logo-png.png" alt="logo">
-                </span>
+                    </span>
 
-                <div class="text header-text">
-                    <span class="name">Somos iCEV</span>
-                    <span class="complement">Identificação do Aluno</span>
+                    <div class="text header-text">
+                        <span class="name">Somos iCEV</span>
+                        <span class="complement">Identificação do Aluno</span>
+                    </div>
+
                 </div>
+            </header>
 
-            </div>
+            <div class="menu-bar">
+                <form action="/emitir" method="POST" id="form">
 
-             <i class="fa-solid fa-chevron-right toggle"></i>
-        </header>
+                    <h3>1º Aluno</h3>
 
-        <div class="menu-bar">
-                <div id="form">
-                <form action="/emitir" method="POST">
-                
-                <!-- Aluno 1 -->
-
-                <h3>1º Aluno</h3>   
-                
-                <!-- Nome -->
-                <label for="nome1">Nome:</label>
-                <div class="input">
-                    <i class="fa-solid fa-user"></i>
-                    <input id="nome1" name="nome1" placeholder="Nome do aluno" type="text">
-                </div>
-                
-                <!-- Curso -->
-                <div id="category-select1">
-                
-                    <label for="options-view-button">Curso:</label>
-
+                    <label for="nome1">Nome:</label>
                     <div class="input">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        
-                        <div 
-                        id="curso1" 
-                        class="custom-select" 
-                        required>
-                                
-                                <input 
-                                id="search-curso1"
-                                type="text"
-                                class="input-field"
-                                autocomplete="off"
-                                placeholder="Digite o curso..." />
+                        <i class="fa-solid fa-user"></i>
+                        <input id="nome1" name="nome1" placeholder="Nome do aluno" type="text">
+                    </div>
 
+                    <div id="category-select1">
+                        <label for="options-view-button">Curso:</label>
+                        <div class="input">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div id="curso1" class="custom-select" required>
+                                <input id="search-curso1" type="text" class="input-field" autocomplete="off"
+                                    placeholder="Digite o curso..." />
 
                                 <ul class="options-1">
                                     <li class="option" data-value="dt" tabindex="0">Direito</li>
                                     <li class="option" data-value="cpt" tabindex="0">Engenharia da Computação</li>
                                     <li class="option" data-value="adm" tabindex="0">Administração</li>
-
-                                    <!-- Pós Graduação -->
-
-                                    <!--MBA -->
-
-                                    <li class="option" data-value="mba-auditoria-controladoria" tabindex="0">MBA em Auditoria e Controladoria</li>
-                                    <li class="option" data-value="mba-construcao-civil" tabindex="0">MBA em Construção Civil</li>
-                                    <li class="option" data-value="mba-gestao-conflitos" tabindex="0">MBA em Gestão de Conflitos</li>
-                                    <li class="option" data-value="mba-gestao-dados-inovacao" tabindex="0">MBA em Gestão de Dados e Inovação</li>
-                                    <li class="option" data-value="mba-gestao-marketing" tabindex="0">MBA em Gestão de Marketing</li>
-                                    <li class="option" data-value="mba-gestao-pessoas" tabindex="0">MBA em Gestão de Pessoas</li>
-                                    <li class="option" data-value="mba-gestao-pessoas-carreiras" tabindex="0">MBA em Gestão de Pessoas e Carreiras</li>
-                                    <li class="option" data-value="mba-gestao-projetos-empresariais" tabindex="0">MBA em Gestão de Projetos Empresariais</li>
-                                    <li class="option" data-value="mba-gestao-educacional" tabindex="0">MBA em Gestão Educacional</li>
-                                    <li class="option" data-value="mba-gestao-saude" tabindex="0">MBA em Gestão em Saúde</li>
-                                    <li class="option" data-value="mba-gestao-empresarial" tabindex="0">MBA em Gestão Empresarial</li>
-                                    <li class="option" data-value="mba-gestao-financeira" tabindex="0">MBA em Gestão Financeira</li>
-                                    <li class="option" data-value="mba-gestao-financeira-controladoria" tabindex="0">MBA em Gestão Financeira e Controladoria</li>
-                                    <li class="option" data-value="mba-gestao-publica" tabindex="0">MBA em Gestão Pública</li>
-                                    <li class="option" data-value="mba-legislacao-planejamento-tributario" tabindex="0">MBA em Legislação e Planejamento Tributário</li>
+                                    <li class="option" data-value="mba-auditoria-controladoria" tabindex="0">MBA em
+                                        Auditoria e Controladoria</li>
+                                    <li class="option" data-value="mba-construcao-civil" tabindex="0">MBA em Construção
+                                        Civil</li>
+                                    <li class="option" data-value="mba-gestao-conflitos" tabindex="0">MBA em Gestão de
+                                        Conflitos</li>
+                                    <li class="option" data-value="mba-gestao-dados-inovacao" tabindex="0">MBA em Gestão
+                                        de Dados e Inovação</li>
+                                    <li class="option" data-value="mba-gestao-marketing" tabindex="0">MBA em Gestão de
+                                        Marketing</li>
+                                    <li class="option" data-value="mba-gestao-pessoas" tabindex="0">MBA em Gestão de
+                                        Pessoas</li>
+                                    <li class="option" data-value="mba-gestao-pessoas-carreiras" tabindex="0">MBA em
+                                        Gestão de Pessoas e Carreiras</li>
+                                    <li class="option" data-value="mba-gestao-projetos-empresariais" tabindex="0">MBA em
+                                        Gestão de Projetos Empresariais</li>
+                                    <li class="option" data-value="mba-gestao-educacional" tabindex="0">MBA em Gestão
+                                        Educacional</li>
+                                    <li class="option" data-value="mba-gestao-saude" tabindex="0">MBA em Gestão em Saúde
+                                    </li>
+                                    <li class="option" data-value="mba-gestao-empresarial" tabindex="0">MBA em Gestão
+                                        Empresarial</li>
+                                    <li class="option" data-value="mba-gestao-financeira" tabindex="0">MBA em Gestão
+                                        Financeira</li>
+                                    <li class="option" data-value="mba-gestao-financeira-controladoria" tabindex="0">MBA
+                                        em Gestão Financeira e Controladoria</li>
+                                    <li class="option" data-value="mba-gestao-publica" tabindex="0">MBA em Gestão
+                                        Pública</li>
+                                    <li class="option" data-value="mba-legislacao-planejamento-tributario" tabindex="0">
+                                        MBA em Legislação e Planejamento Tributário</li>
                                     <li class="option" data-value="mba-management" tabindex="0">MBA em Management</li>
-                                    <li class="option" data-value="mba-marketing-estrategico" tabindex="0">MBA em Marketing Estratégico</li>
-                                    <li class="option" data-value="mba-energias-renovaveis-hidrogenio-verde" tabindex="0">MBA em Mercado de Energias Renováveis e Hidrogênio Verde</li>
-                                    
-                                    <!-- Pós -->
-
-                                    <li class="option" data-value="pos-direito-familia-sucessoes" tabindex="0">Pós em Direito de Família e Sucessões</li>
-                                    <li class="option" data-value="pos-psicologia-infancia-adolescencia" tabindex="0">Pós em Psicologia Aplicada ao Desenvolvimento Infantil e Adolescente</li>
-                                    <li class="option" data-value="pos-advocacia-criminal" tabindex="0">Pós em Advocacia Criminal</li>
-                                    <li class="option" data-value="pos-advocacia-criminal-compliance" tabindex="0">Pós em Advocacia Criminal e Compliance</li>
-                                    <li class="option" data-value="pos-advocacia-empresarial" tabindex="0">Pós em Advocacia Empresarial</li>
-                                    <li class="option" data-value="pos-analise-dados-ia" tabindex="0">Pós em Análise de Dados e IA para Tomada de Decisões Empresariais</li>
-                                    <li class="option" data-value="pos-business-data-science" tabindex="0">Pós em Business Data Science</li>
-                                    <li class="option" data-value="pos-business-intelligence-data-science" tabindex="0">Pós em Business Intelligence e Data Science</li>
-                                    <li class="option" data-value="pos-data-science-bi" tabindex="0">Pós em Data Science e Business Intelligence</li>
-                                    <li class="option" data-value="pos-desenvolvimento-jogos" tabindex="0">Pós em Desenvolvimento de Jogos</li>
-                                    <li class="option" data-value="pos-desenvolvimento-web-fullstack" tabindex="0">Pós em Desenvolvimento Web Full Stack</li>
-                                    <li class="option" data-value="pos-direito-civil-processual-civil" tabindex="0">Pós em Direito Civil e Processual Civil</li>
-                                    <li class="option" data-value="pos-direito-constitucional" tabindex="0">Pós em Direito Constitucional</li>
-                                    <li class="option" data-value="pos-direito-agronegocio" tabindex="0">Pós em Direito do Agronegócio Aplicado</li>
-                                    <li class="option" data-value="pos-direito-trabalho-previdenciario" tabindex="0">Pós em Direito do Trabalho e Previdenciário Aplicado</li>
-                                    <li class="option" data-value="pos-direito-trabalho-processo" tabindex="0">Pós em Direito do Trabalho e Processo do Trabalho</li>
-                                    <li class="option" data-value="pos-direito-eleitoral" tabindex="0">Pós em Direito Eleitoral Aplicado</li>
-                                    <li class="option" data-value="pos-direito-privado" tabindex="0">Pós em Direito Privado: Direito Civil, Empresarial e Consumidor</li>
-                                    <li class="option" data-value="pos-inteligencia-artificial-negocios" tabindex="0">Pós em Ferramentas de Inteligência Artificial para Negócios</li>
-                                    <li class="option" data-value="pos-gestao-educacional" tabindex="0">Pós em Gestão Educacional</li>
-                                    <li class="option" data-value="pos-inovacoes-tecnologicas-educacao" tabindex="0">Pós em Inovações Tecnológicas para Educação</li>
-                                    <li class="option" data-value="pos-inteligencia-artificial" tabindex="0">Pós em Inteligência Artificial</li>
-                                    <li class="option" data-value="pos-licitacoes-contratos" tabindex="0">Pós em Licitações e Contratos</li>
-
+                                    <li class="option" data-value="mba-marketing-estrategico" tabindex="0">MBA em
+                                        Marketing Estratégico</li>
+                                    <li class="option" data-value="mba-energias-renovaveis-hidrogenio-verde"
+                                        tabindex="0">MBA em Mercado de Energias Renováveis e Hidrogênio Verde</li>
+                                    <li class="option" data-value="pos-direito-familia-sucessoes" tabindex="0">Pós em
+                                        Direito de Família e Sucessões</li>
+                                    <li class="option" data-value="pos-psicologia-infancia-adolescencia" tabindex="0">
+                                        Pós em Psicologia Aplicada ao Desenvolvimento Infantil e Adolescente</li>
+                                    <li class="option" data-value="pos-advocacia-criminal" tabindex="0">Pós em Advocacia
+                                        Criminal</li>
+                                    <li class="option" data-value="pos-advocacia-criminal-compliance" tabindex="0">Pós
+                                        em Advocacia Criminal e Compliance</li>
+                                    <li class="option" data-value="pos-advocacia-empresarial" tabindex="0">Pós em
+                                        Advocacia Empresarial</li>
+                                    <li class="option" data-value="pos-analise-dados-ia" tabindex="0">Pós em Análise de
+                                        Dados e IA para Tomada de Decisões Empresariais</li>
+                                    <li class="option" data-value="pos-business-data-science" tabindex="0">Pós em
+                                        Business Data Science</li>
+                                    <li class="option" data-value="pos-business-intelligence-data-science" tabindex="0">
+                                        Pós em Business Intelligence e Data Science</li>
+                                    <li class="option" data-value="pos-data-science-bi" tabindex="0">Pós em Data Science
+                                        e Business Intelligence</li>
+                                    <li class="option" data-value="pos-desenvolvimento-jogos" tabindex="0">Pós em
+                                        Desenvolvimento de Jogos</li>
+                                    <li class="option" data-value="pos-desenvolvimento-web-fullstack" tabindex="0">Pós
+                                        em Desenvolvimento Web Full Stack</li>
+                                    <li class="option" data-value="pos-direito-civil-processual-civil" tabindex="0">Pós
+                                        em Direito Civil e Processual Civil</li>
+                                    <li class="option" data-value="pos-direito-constitucional" tabindex="0">Pós em
+                                        Direito Constitucional</li>
+                                    <li class="option" data-value="pos-direito-agronegocio" tabindex="0">Pós em Direito
+                                        do Agronegócio Aplicado</li>
+                                    <li class="option" data-value="pos-direito-trabalho-previdenciario" tabindex="0">Pós
+                                        em Direito do Trabalho e Previdenciário Aplicado</li>
+                                    <li class="option" data-value="pos-direito-trabalho-processo" tabindex="0">Pós em
+                                        Direito do Trabalho e Processo do Trabalho</li>
+                                    <li class="option" data-value="pos-direito-eleitoral" tabindex="0">Pós em Direito
+                                        Eleitoral Aplicado</li>
+                                    <li class="option" data-value="pos-direito-privado" tabindex="0">Pós em Direito
+                                        Privado: Direito Civil, Empresarial e Consumidor</li>
+                                    <li class="option" data-value="pos-inteligencia-artificial-negocios" tabindex="0">
+                                        Pós em Ferramentas de Inteligência Artificial para Negócios</li>
+                                    <li class="option" data-value="pos-gestao-educacional" tabindex="0">Pós em Gestão
+                                        Educacional</li>
+                                    <li class="option" data-value="pos-inovacoes-tecnologicas-educacao" tabindex="0">Pós
+                                        em Inovações Tecnológicas para Educação</li>
+                                    <li class="option" data-value="pos-inteligencia-artificial" tabindex="0">Pós em
+                                        Inteligência Artificial</li>
+                                    <li class="option" data-value="pos-licitacoes-contratos" tabindex="0">Pós em
+                                        Licitações e Contratos</li>
                                 </ul>
 
-                                <p id="no_results" style="display: none; color: rgba(255, 0, 0, 0.5);">Nenhum curso encontrado.</p>
+                                <p id="no_results" style="display: none; color: rgba(255, 0, 0, 0.5);">Nenhum curso
+                                    encontrado.</p>
                                 <input type="hidden" name="curso1" id="curso1-hidden">
+                            </div>
                         </div>
-                    </div>  
-                </div>
+                    </div>
 
-                <label for="periodo1">Período:</label>
-                <div class="input">
-                    <i class="fa-solid fa-calendar"></i>
-                    <input id="periodo1" name="periodo1" type="number" min="1" max="10" placeholder="Período">
-                </div>
-                
-                <!-- Aluno 2 -->
-
-                <h3>2º Aluno</h3>
-                <label for="username2">Nome:</label>
-                <div class="input">
-                    <i class="fa-solid fa-user"></i>
-                    <input id="nome2" name="nome2" placeholder="Nome do aluno" type="text">
-                </div>
-                
-                <!-- Curso -->
-                <div id="category-select2">
-
-                    <label for="options-view-button">Curso:</label>
-
+                    <label for="periodo1">Período:</label>
                     <div class="input">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        
-                        <div 
-                        id="curso2" 
-                        class="custom-select" 
-                        required>
+                        <i class="fa-solid fa-calendar"></i>
+                        <input id="periodo1" name="periodo1" type="number" min="1" max="10" placeholder="Período">
+                    </div>
 
-                                <input
-                                id="search-curso2"  
-                                type="text"
-                                class="input-field"
-                                autocomplete="off"
-                                placeholder="Digite o curso..." />
+                    <h3>2º Aluno</h3>
+                    <label for="username2">Nome:</label>
+                    <div class="input">
+                        <i class="fa-solid fa-user"></i>
+                        <input id="nome2" name="nome2" placeholder="Nome do aluno" type="text">
+                    </div>
 
-                                <!-- items -->
-                                 <!-- alterado para class -->
+                    <div id="category-select2">
+                        <label for="options-view-button">Curso:</label>
+                        <div class="input">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div id="curso2" class="custom-select" required>
+                                <input id="search-curso2" type="text" class="input-field" autocomplete="off"
+                                    placeholder="Digite o curso..." />
+
                                 <ul class="options-2">
                                     <li class="option" data-value="dt" tabindex="0">Direito</li>
                                     <li class="option" data-value="cpt" tabindex="0">Engenharia da Computação</li>
                                     <li class="option" data-value="adm" tabindex="0">Administração</li>
-
-                                    <!-- Pós Graduação -->
-
-                                    <!--MBA -->
-
-                                    <li class="option" data-value="mba-auditoria-controladoria" tabindex="0">MBA em Auditoria e Controladoria</li>
-                                    <li class="option" data-value="mba-construcao-civil" tabindex="0">MBA em Construção Civil</li>
-                                    <li class="option" data-value="mba-gestao-conflitos" tabindex="0">MBA em Gestão de Conflitos</li>
-                                    <li class="option" data-value="mba-gestao-dados-inovacao" tabindex="0">MBA em Gestão de Dados e Inovação</li>
-                                    <li class="option" data-value="mba-gestao-marketing" tabindex="0">MBA em Gestão de Marketing</li>
-                                    <li class="option" data-value="mba-gestao-pessoas" tabindex="0">MBA em Gestão de Pessoas</li>
-                                    <li class="option" data-value="mba-gestao-pessoas-carreiras" tabindex="0">MBA em Gestão de Pessoas e Carreiras</li>
-                                    <li class="option" data-value="mba-gestao-projetos-empresariais" tabindex="0">MBA em Gestão de Projetos Empresariais</li>
-                                    <li class="option" data-value="mba-gestao-educacional" tabindex="0">MBA em Gestão Educacional</li>
-                                    <li class="option" data-value="mba-gestao-saude" tabindex="0">MBA em Gestão em Saúde</li>
-                                    <li class="option" data-value="mba-gestao-empresarial" tabindex="0">MBA em Gestão Empresarial</li>
-                                    <li class="option" data-value="mba-gestao-financeira" tabindex="0">MBA em Gestão Financeira</li>
-                                    <li class="option" data-value="mba-gestao-financeira-controladoria" tabindex="0">MBA em Gestão Financeira e Controladoria</li>
-                                    <li class="option" data-value="mba-gestao-publica" tabindex="0">MBA em Gestão Pública</li>
-                                    <li class="option" data-value="mba-legislacao-planejamento-tributario" tabindex="0">MBA em Legislação e Planejamento Tributário</li>
+                                    <li class="option" data-value="mba-auditoria-controladoria" tabindex="0">MBA em
+                                        Auditoria e Controladoria</li>
+                                    <li class="option" data-value="mba-construcao-civil" tabindex="0">MBA em Construção
+                                        Civil</li>
+                                    <li class="option" data-value="mba-gestao-conflitos" tabindex="0">MBA em Gestão de
+                                        Conflitos</li>
+                                    <li class="option" data-value="mba-gestao-dados-inovacao" tabindex="0">MBA em Gestão
+                                        de Dados e Inovação</li>
+                                    <li class="option" data-value="mba-gestao-marketing" tabindex="0">MBA em Gestão de
+                                        Marketing</li>
+                                    <li class="option" data-value="mba-gestao-pessoas" tabindex="0">MBA em Gestão de
+                                        Pessoas</li>
+                                    <li class="option" data-value="mba-gestao-pessoas-carreiras" tabindex="0">MBA em
+                                        Gestão de Pessoas e Carreiras</li>
+                                    <li class="option" data-value="mba-gestao-projetos-empresariais" tabindex="0">MBA em
+                                        Gestão de Projetos Empresariais</li>
+                                    <li class="option" data-value="mba-gestao-educacional" tabindex="0">MBA em Gestão
+                                        Educacional</li>
+                                    <li class="option" data-value="mba-gestao-saude" tabindex="0">MBA em Gestão em Saúde
+                                    </li>
+                                    <li class="option" data-value="mba-gestao-empresarial" tabindex="0">MBA em Gestão
+                                        Empresarial</li>
+                                    <li class="option" data-value="mba-gestao-financeira" tabindex="0">MBA em Gestão
+                                        Financeira</li>
+                                    <li class="option" data-value="mba-gestao-financeira-controladoria" tabindex="0">MBA
+                                        em Gestão Financeira e Controladoria</li>
+                                    <li class="option" data-value="mba-gestao-publica" tabindex="0">MBA em Gestão
+                                        Pública</li>
+                                    <li class="option" data-value="mba-legislacao-planejamento-tributario" tabindex="0">
+                                        MBA em Legislação e Planejamento Tributário</li>
                                     <li class="option" data-value="mba-management" tabindex="0">MBA em Management</li>
-                                    <li class="option" data-value="mba-marketing-estrategico" tabindex="0">MBA em Marketing Estratégico</li>
-                                    <li class="option" data-value="mba-energias-renovaveis-hidrogenio-verde" tabindex="0">MBA em Mercado de Energias Renováveis e Hidrogênio Verde</li>
-                                    
-                                    <!-- Pós -->
-
-                                    <li class="option" data-value="pos-direito-familia-sucessoes" tabindex="0">Pós em Direito de Família e Sucessões</li>
-                                    <li class="option" data-value="pos-psicologia-infancia-adolescencia" tabindex="0">Pós em Psicologia Aplicada ao Desenvolvimento Infantil e Adolescente</li>
-                                    <li class="option" data-value="pos-advocacia-criminal" tabindex="0">Pós em Advocacia Criminal</li>
-                                    <li class="option" data-value="pos-advocacia-criminal-compliance" tabindex="0">Pós em Advocacia Criminal e Compliance</li>
-                                    <li class="option" data-value="pos-advocacia-empresarial" tabindex="0">Pós em Advocacia Empresarial</li>
-                                    <li class="option" data-value="pos-analise-dados-ia" tabindex="0">Pós em Análise de Dados e IA para Tomada de Decisões Empresariais</li>
-                                    <li class="option" data-value="pos-business-data-science" tabindex="0">Pós em Business Data Science</li>
-                                    <li class="option" data-value="pos-business-intelligence-data-science" tabindex="0">Pós em Business Intelligence e Data Science</li>
-                                    <li class="option" data-value="pos-data-science-bi" tabindex="0">Pós em Data Science e Business Intelligence</li>
-                                    <li class="option" data-value="pos-desenvolvimento-jogos" tabindex="0">Pós em Desenvolvimento de Jogos</li>
-                                    <li class="option" data-value="pos-desenvolvimento-web-fullstack" tabindex="0">Pós em Desenvolvimento Web Full Stack</li>
-                                    <li class="option" data-value="pos-direito-civil-processual-civil" tabindex="0">Pós em Direito Civil e Processual Civil</li>
-                                    <li class="option" data-value="pos-direito-constitucional" tabindex="0">Pós em Direito Constitucional</li>
-                                    <li class="option" data-value="pos-direito-agronegocio" tabindex="0">Pós em Direito do Agronegócio Aplicado</li>
-                                    <li class="option" data-value="pos-direito-trabalho-previdenciario" tabindex="0">Pós em Direito do Trabalho e Previdenciário Aplicado</li>
-                                    <li class="option" data-value="pos-direito-trabalho-processo" tabindex="0">Pós em Direito do Trabalho e Processo do Trabalho</li>
-                                    <li class="option" data-value="pos-direito-eleitoral" tabindex="0">Pós em Direito Eleitoral Aplicado</li>
-                                    <li class="option" data-value="pos-direito-privado" tabindex="0">Pós em Direito Privado: Direito Civil, Empresarial e Consumidor</li>
-                                    <li class="option" data-value="pos-inteligencia-artificial-negocios" tabindex="0">Pós em Ferramentas de Inteligência Artificial para Negócios</li>
-                                    <li class="option" data-value="pos-gestao-educacional" tabindex="0">Pós em Gestão Educacional</li>
-                                    <li class="option" data-value="pos-inovacoes-tecnologicas-educacao" tabindex="0">Pós em Inovações Tecnológicas para Educação</li>
-                                    <li class="option" data-value="pos-inteligencia-artificial" tabindex="0">Pós em Inteligência Artificial</li>
-                                    <li class="option" data-value="pos-licitacoes-contratos" tabindex="0">Pós em Licitações e Contratos</li>
-     
+                                    <li class="option" data-value="mba-marketing-estrategico" tabindex="0">MBA em
+                                        Marketing Estratégico</li>
+                                    <li class="option" data-value="mba-energias-renovaveis-hidrogenio-verde"
+                                        tabindex="0">MBA em Mercado de Energias Renováveis e Hidrogênio Verde</li>
+                                    <li class="option" data-value="pos-direito-familia-sucessoes" tabindex="0">Pós em
+                                        Direito de Família e Sucessões</li>
+                                    <li class="option" data-value="pos-psicologia-infancia-adolescencia" tabindex="0">
+                                        Pós em Psicologia Aplicada ao Desenvolvimento Infantil e Adolescente</li>
+                                    <li class="option" data-value="pos-advocacia-criminal" tabindex="0">Pós em Advocacia
+                                        Criminal</li>
+                                    <li class="option" data-value="pos-advocacia-criminal-compliance" tabindex="0">Pós
+                                        em Advocacia Criminal e Compliance</li>
+                                    <li class="option" data-value="pos-advocacia-empresarial" tabindex="0">Pós em
+                                        Advocacia Empresarial</li>
+                                    <li class="option" data-value="pos-analise-dados-ia" tabindex="0">Pós em Análise de
+                                        Dados e IA para Tomada de Decisões Empresariais</li>
+                                    <li class="option" data-value="pos-business-data-science" tabindex="0">Pós em
+                                        Business Data Science</li>
+                                    <li class="option" data-value="pos-business-intelligence-data-science" tabindex="0">
+                                        Pós em Business Intelligence e Data Science</li>
+                                    <li class="option" data-value="pos-data-science-bi" tabindex="0">Pós em Data Science
+                                        e Business Intelligence</li>
+                                    <li class="option" data-value="pos-desenvolvimento-jogos" tabindex="0">Pós em
+                                        Desenvolvimento de Jogos</li>
+                                    <li class="option" data-value="pos-desenvolvimento-web-fullstack" tabindex="0">Pós
+                                        em Desenvolvimento Web Full Stack</li>
+                                    <li class="option" data-value="pos-direito-civil-processual-civil" tabindex="0">Pós
+                                        em Direito Civil e Processual Civil</li>
+                                    <li class="option" data-value="pos-direito-constitucional" tabindex="0">Pós em
+                                        Direito Constitucional</li>
+                                    <li class="option" data-value="pos-direito-agronegocio" tabindex="0">Pós em Direito
+                                        do Agronegócio Aplicado</li>
+                                    <li class="option" data-value="pos-direito-trabalho-previdenciario" tabindex="0">Pós
+                                        em Direito do Trabalho e Previdenciário Aplicado</li>
+                                    <li class="option" data-value="pos-direito-trabalho-processo" tabindex="0">Pós em
+                                        Direito do Trabalho e Processo do Trabalho</li>
+                                    <li class="option" data-value="pos-direito-eleitoral" tabindex="0">Pós em Direito
+                                        Eleitoral Aplicado</li>
+                                    <li class="option" data-value="pos-direito-privado" tabindex="0">Pós em Direito
+                                        Privado: Direito Civil, Empresarial e Consumidor</li>
+                                    <li class="option" data-value="pos-inteligencia-artificial-negocios" tabindex="0">
+                                        Pós em Ferramentas de Inteligência Artificial para Negócios</li>
+                                    <li class="option" data-value="pos-gestao-educacional" tabindex="0">Pós em Gestão
+                                        Educacional</li>
+                                    <li class="option" data-value="pos-inovacoes-tecnologicas-educacao" tabindex="0">Pós
+                                        em Inovações Tecnológicas para Educação</li>
+                                    <li class="option" data-value="pos-inteligencia-artificial" tabindex="0">Pós em
+                                        Inteligência Artificial</li>
+                                    <li class="option" data-value="pos-licitacoes-contratos" tabindex="0">Pós em
+                                        Licitações e Contratos</li>
                                 </ul>
-
-                                <p id="no_results2" style="display: none; color:  rgba(255, 0, 0, 0.5);">Nenhum curso encontrado.</p>
+                                <p id="no_results2" style="display: none; color:  rgba(255, 0, 0, 0.5);">Nenhum curso
+                                    encontrado.</p>
                                 <input type="hidden" name="curso2" id="curso2-hidden">
+                            </div>
                         </div>
-                        
-                    </div>  
+                    </div>
 
-                </div>
-                <label for="periodo2">Período:</label>
-                <div class="input">
-                    <i class="fa-solid fa-calendar"></i>
-                    <input id="periodo2" name="periodo2" type="number" min="1" max="10" placeholder="Período">
-                </div>
+                    <label for="periodo2">Período:</label>
+                    <div class="input">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input id="periodo2" name="periodo2" type="number" min="1" max="10" placeholder="Período">
+                    </div>
 
-                <!-- Emitir normalmente -->
-                <div id="btn">
-                    <button type="button" id="emitir-btn">Emitir</button>
-                </div>
+                    <div id="btn">
+                        <button type="button" id="emitir-btn">Emitir</button>
+                    </div>
 
-                <!-- Anexar CSV -->
-
-                <input type="file" id="csv-upload" accept=".csv" style="display: none;">
-                    
+                    <input type="file" id="csv-upload" accept=".csv" style="display: none;">
                     <div id="btn-2">
                         <button type="button" id="csv-btn">Anexar CSV</button>
                     </div>
+                    <p id="file-name" class="file-name"></p>
 
-                <p id="file-name" class="file-name"></p>
+                </form>
 
-            </form>
+                <div class="bottom-content">
+                    <li class="mode">
+                        <div class="moon-sun">
+                            <i class="ph ph-moon icon moon"></i>
+                            <i class="ph ph-sun icon sun"></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
 
-            <div class="bottom-content">
-                <li class="mode">
-                    <div class="moon-sun">
-                        <i class="ph ph-moon icon moon"></i>
-                        <i class="ph ph-sun icon sun"></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div> 
-
-                </li>
-            </div>
-        </div>   
-        
-    </nav>
-
-    <div class="all-preview">
-        <div id="emission">
-            <h2>Placas de Alunos iCEV</h2>
-        </div>
-
-        <div class="preview-area">
-            <div class="layout">
-                <div class="nome preview-nome1">{{ nome1 or 'Aluno 1' }}</div>
-                <div class="curso preview-curso1">{{ curso1 or 'Curso' }}</div>
-                <div class="periodo preview-periodo1">{{ periodo1 or 'Período' }}</div>
-            </div>
-
-            <div class="layout">
-                <div class="nome preview-nome2">{{ nome2 or 'Aluno 2' }}</div>
-                <div class="curso preview-curso2">{{ curso2 or 'Curso' }}</div>
-                <div class="periodo preview-periodo2">{{ periodo2 or 'Período' }}</div>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- subscreen.html -->
-    {% include 'subscreen.html' %}
+        <div class="preview-panel">
+            <div id="emission">
+                <h2>Placas de Alunos iCEV</h2>
+            </div>
+
+            <div class="preview-area">
+                <div class="layout">
+                    <div class="nome preview-nome1">{{ nome1 or 'Aluno 1' }}</div>
+                    <div class="curso preview-curso1">{{ curso1 or 'Curso' }}</div>
+                    <div class="periodo preview-periodo1">{{ periodo1 or 'Período' }}</div>
+                </div>
+
+                <div class="layout">
+                    <div class="nome preview-nome2">{{ nome2 or 'Aluno 2' }}</div>
+                    <div class="curso preview-curso2">{{ curso2 or 'Curso' }}</div>
+                    <div class="periodo preview-periodo2">{{ periodo2 or 'Período' }}</div>
+                </div>
+            </div>
+        </div>
+    </div> {% include 'subscreen.html' %}
 
 
 </body>
+
 </html>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="{{ url_for('static', filename='js/custom.js') }}"defer></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}" defer></script>
